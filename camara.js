@@ -21,9 +21,18 @@ class Camara{
 	}
 
 	setCanvas(){
-		setInterval(()=>{
-			this.contexto.drawImage(this.video, 0, 0);
-		}, 1000/30)
+		video.addEventListener("play", (ev)=> this.loop())
+	}
+
+	loop(){
+		if(this.video.paused || this.video.ended) return
+
+		this.draw()
+		setTimeout(()=> this.loop(), 1000/30)
+	}
+
+	draw(){
+		this.contexto.drawImage(this.video, 0, 0)
 	}
 
 	idBrowserValid(){
