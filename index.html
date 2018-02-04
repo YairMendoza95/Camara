@@ -3,11 +3,31 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Cámara Web con HTML</title>
+	<style>
+		#video{display: none;}
+		body{
+			text-align: center;
+		}
+		#camara{
+			display: inline-block;
+			position: relative;
+		}
+		#snap{
+			border-radius: 50%;
+			background: rgba(200,200,200,0.6);
+			border: solid 5px #fffff;
+			position: absolute;
+			bottom: 10px;
+			width: 50px;
+			height: 50px;
+		}
+	</style>
 </head>
 <body>
 	<div id="camara">
-		<video src="" id="video"></video>
-		<canvas id="canvas"></canvas>
+		<video id="video" autoplay="autoplay"></video>
+		<canvas id="canvas" width="640" height="480"></canvas>
+		<button id="snap"></button>
 	</div>
 	<script src="./main.js"></script>
 </body>

@@ -8,7 +8,16 @@
 		//
 		navigator.webkitGetUserMedia({video: true}, function(localMediaStream){
 			// Esta funcion se activa cuando el usuario autoriza el uso de la cámara y cargue la imagen de la cámara
-			document.getElementById('video').src = window.URL.createObjectURL(localMediaStream)
+
+			// Se obtiene el id del control para el video y en el atributo src se asigna la URL del video obtenido
+			var video = document.getElementById('video');
+			video.src = window.URL.createObjectURL(localMediaStream);
+
+			var canvas = document.getElementById('canvas');
+			var contexto = canvas.getContext('2d'); // El contexto es el objeto que tienen los métodos que nos permiten dibujar 
+			setInterval(function(){
+				contexto.drawImage(this.video, 0, 0);
+			}, 1000/30)
 		}, function(error){
 			console.log(error);
 		})
