@@ -16,6 +16,14 @@ class Camara{
 		})
 	}
 
+	snap(){
+		this.video.pause()
+	}
+
+	unSnap(){
+		this.video.play()
+	}
+
 	setVideo(localMediaStream){
 		this.video.src = window.URL.createObjectURL(localMediaStream)
 	}
