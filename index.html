@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<title>Cámara Web con HTML</title>
@@ -37,16 +37,45 @@
 		}
 
 		#actions{
+			position: absolute;
+			top: 1em;
+			right: 1em;
 			display: none;
+		}
+
+		#stickers{
+			height: calc(100% - 100px);
+			width: 100%;
+			background-color: rgba(0,0,0,0.8);
+			position: absolute;
+			top: 0px;
+			left: 0px;  
+			text-align: center;
+			margin-top: 100px;
+			display: none;
+		}
+		.stickers{
+			display: inline-block;
+			width: 19%;
+			margin-top: 30px;
 		}
 	</style>
 </head>
 <body>
 	<div id="camara">
 		<div id="actions">
-			<a href="" id="download"><span width="25" height="30" class="glyphicon glyphicon-download-alt"></span></a>
-			<a href="" id="sticker"><span width="25" height="25" class="glyphicon glyphicon-ok"></span></a>
-			<a href="" id="cancel"><span width="25" height="25" class="glyphicon glyphicon-remove-circle"></span></a>
+			<!-- Split button -->
+			<div class="btn-group">
+			    <a href="" id="download"><span class="glyphicon glyphicon-download-alt"></span></a>
+			    <a href="" id="sticker"><span class="glyphicon glyphicon-ok"></span></a>
+			    <a href="" id="cancel"><span class="glyphicon glyphicon-remove-circle"></span></a>
+			</div>			
+		</div>
+		<div id="stickers">
+			<img src="stickers/2.png" alt="" class="stickers">
+			<img src="stickers/3.png" alt="" class="stickers">
+			<img src="stickers/4.png" alt="" class="stickers">
+			<img src="stickers/5.png" alt="" class="stickers">
 		</div>
 		<video id="video" autoplay="autoplay"></video>
 		<canvas id="canvas" width="640" height="480"></canvas>

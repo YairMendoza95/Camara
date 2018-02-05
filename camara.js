@@ -6,6 +6,7 @@ class Camara{
 		this.video = document.getElementById(video_id)
 		this.canvas = document.getElementById(canvas_id)
 		this.contexto = this.canvas.getContext('2d') // El contexto es el objeto que tienen los métodos que nos permiten dibujar 
+		this.sticker = null
 
 		navigator.webkitGetUserMedia({video: true}, (localMediaStream)=>{
 			this.setVideo(localMediaStream)
@@ -41,8 +42,14 @@ class Camara{
 
 	draw(){
 		this.contexto.drawImage(this.video, 0, 0)
-	}
+		if(this.sticker != null)
+			this.contexto.drawImage(this.sticker, 20, 20, 90, 90)
+	} 
 
+	addSticker(img){
+		this.sticker = img
+		this.draw()
+	}
 	idBrowserValid(){
 		return !!(navigator.getUserMedia || navigator.webkitGetUserMedia) // La doble negación convierte lo que sea que reciba a boolean
 	}
