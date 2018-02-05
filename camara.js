@@ -7,8 +7,18 @@ class Camara{
 		this.canvas = document.getElementById(canvas_id)
 		this.contexto = this.canvas.getContext('2d') // El contexto es el objeto que tienen los métodos que nos permiten dibujar 
 		this.sticker = null
+		this.camaras = []
 
-		navigator.webkitGetUserMedia({video: true}, (localMediaStream)=>{
+		navigator.mediaDevices.enumerateDevices().then((devices)=>{
+			//console.log(devices)
+			devices.forEach((device)=> {
+				if(device.kind == 'videoinput')	
+					console.log(device.deviceId + " - " + device.label)
+					this.camaras.push(device)
+			})
+		})
+
+		navigator.webkitGetUserMedia(this.constrains(), (localMediaStream)=>{
 			this.setVideo(localMediaStream)
 			this.setCanvas()
 			callback()
@@ -23,6 +33,7 @@ class Camara{
 
 	unSnap(){
 		this.video.play()
+		this.sticker = null
 	}
 
 	setVideo(localMediaStream){
@@ -43,7 +54,8 @@ class Camara{
 	draw(){
 		this.contexto.drawImage(this.video, 0, 0)
 		if(this.sticker != null)
-			this.contexto.drawImage(this.sticker, 20, 20, 90, 90)
+			this.contexto.drawImage(this.sticker, 20, 20, 90, 90
+				)
 	} 
 
 	addSticker(img){
@@ -52,5 +64,15 @@ class Camara{
 	}
 	idBrowserValid(){
 		return !!(navigator.getUserMedia || navigator.webkitGetUserMedia) // La doble negación convierte lo que sea que reciba a boolean
+	}
+
+	constrains(){
+		return {
+			video: {
+				optional: [{
+					sourceId: "7f5b3308a8461955e64a9fdda33184099aff831d9c56ba3cf03956649f8f3727"
+				}]
+			}
+		}
 	}
 }

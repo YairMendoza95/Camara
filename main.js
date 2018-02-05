@@ -2,7 +2,7 @@
 	var camara = new Camara('video', 'canvas', function(){
 		var btnSnap = document.getElementById('snap')
 		var btnCancel = document.getElementById('cancel')
-		var btnSticker = document.getElementById('sticker')
+		var btnSticker = document.getElementById('stick')
 		var btnDownload = document.getElementById('download')
 
 		document.querySelectorAll('.stickers').forEach(function(el){
@@ -26,6 +26,7 @@
 			camara.unSnap()
 			document.getElementById('actions').style.display = 'none'	
 		})
+		
 		btnSticker.addEventListener("click", function(){
 			document.getElementById('stickers').style.display = 'block'	
 		})
